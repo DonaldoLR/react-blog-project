@@ -52,3 +52,4 @@
 ## Resources
 
 - [Create React App](https://create-react-app.dev/docs/getting-started/)
+- [JSON Server Template](https://github.com/learn-co-curriculum/json-server-template)
