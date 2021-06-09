@@ -19,9 +19,9 @@
 ## Roadmap
 
 - [ ] Design
-  - [ ] App Layout
-    - [ ] How the app will look beginning with mobile
-    - [ ] How it will scale to larger screens
+  - [x] App Layout
+    - [x] How the app will look beginning with mobile
+    - [x] How it will scale to larger screens
   - [ ] App Colors
     - [ ] Main
     - [ ] Secondary
