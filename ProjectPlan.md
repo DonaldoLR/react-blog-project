@@ -28,9 +28,9 @@
   - [ ] Text
     - [ ] Size
     - [ ] Style
-- [ ] Create back-end API
-  - [ ] Decide data structure
-    - [ ] What data is available
+- [x] Create back-end API
+  - [x] Decide data structure
+    - [x] What data is available
 - [ ] Create front-end file system
   - [ ] Use create-react-app to start
   - [ ] Display how information will flow
