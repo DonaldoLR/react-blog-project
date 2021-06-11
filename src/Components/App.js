@@ -1,11 +1,11 @@
 import React from 'react';
-import MainContainer from './MainContainer/MainContainer';
-import Navigation from './Navigation/Navigation';
+import BlogContainer from './BlogContainer';
+import Navigation from './Navigation';
 const App = () => {
   return (
     <div>
       <Navigation />
-      <MainContainer />
+      <BlogContainer />
     </div>
   );
 };
