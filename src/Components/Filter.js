@@ -7,24 +7,24 @@ const Filter = ({ setFilter }) => {
   return (
     <ul className='nav nav-pills justify-content-center'>
       <li className='nav-item'>
-        <a
-          className='nav-link'
-          aria-current='page'
-          href='#'
-          onClick={handleFilter}
-        >
+        <button className='nav-link' aria-current='page' onClick={handleFilter}>
+          All
+        </button>
+      </li>
+      <li className='nav-item'>
+        <button className='nav-link' aria-current='page' onClick={handleFilter}>
           Tech
-        </a>
+        </button>
       </li>
       <li className='nav-item'>
-        <a className='nav-link' href='#' onClick={handleFilter}>
+        <button className='nav-link' onClick={handleFilter}>
           Food
-        </a>
+        </button>
       </li>
       <li className='nav-item'>
-        <a className='nav-link' href='#' onClick={handleFilter}>
+        <button className='nav-link' onClick={handleFilter}>
           Life
-        </a>
+        </button>
       </li>
     </ul>
   );

@@ -3,9 +3,10 @@ import BlogPost from './BlogPost';
 import Filter from './Filter';
 import NewPost from './NewPost';
 import EditPost from './EditPost';
+import { Switch, Route } from 'react-router-dom';
 const BlogContainer = () => {
   const [blogList, setBlogList] = useState(null);
-  // const [filterType, setFilterType] = useState(null);
+  const [filterType, setFilterType] = useState(null);
   const [editingMode, setEditingMode] = useState(false);
   const [editingPost, setEditingPost] = useState(null);
 
@@ -16,6 +17,26 @@ const BlogContainer = () => {
       .then((r) => r.json())
       .then(setBlogList);
   }, []);
+  function renderBlogElements() {
+    let filteredBlogList = [...blogList];
+    if (filterType !== null) {
+      filteredBlogList = filteredBlogList.filter((blog) => {
+        if (filterType === 'All') {
+          return true;
+        } else {
+          return blog.type === filterType;
+        }
+      });
+    }
+    return filteredBlogList.map((blog) => (
+      <BlogPost
+        key={blog.id}
+        blog={blog}
+        setEditingMode={setEditingMode}
+        setEditingPost={setEditingPost}
+      />
+    ));
+  }
   function addNewPost(formData) {
     fetch(`${BASE_URL}/blogs`, {
       method: 'POST',
@@ -26,17 +47,6 @@ const BlogContainer = () => {
     })
       .then((r) => r.json())
       .then((data) => setBlogList([...blogList, data]));
-  }
-
-  function renderBlogElements() {
-    return blogList.map((blog) => (
-      <BlogPost
-        key={blog.id}
-        blog={blog}
-        setEditingMode={setEditingMode}
-        setEditingPost={setEditingPost}
-      />
-    ));
   }
   function editPost(formData, id) {
     fetch(`${BASE_URL}/blogs/${id}`, {
@@ -72,11 +82,24 @@ const BlogContainer = () => {
   }
   return (
     <div>
-      <h1 className='text-center'>Latest Posts</h1>
-      <NewPost submitData={addNewPost} />
-      {/* <Filter setFilter={setFilterType} /> */}
+      <Switch>
+        <Route exact path='/'>
+          <h1 className='text-center'>Latest Posts</h1>
+          <Filter setFilter={setFilterType} />
+          {blogList && renderBlogElements()}
+        </Route>
+        <Route exact path='/newPost'>
+          <NewPost submitData={addNewPost} />
+        </Route>
+        <Route exact path='/editPost/:id'>
+          <EditPost
+            blog={editingPost}
+            submitData={editPost}
+            deletePost={deletePost}
+          />
+        </Route>
 
-      {editingMode ? (
+        {/* {editingMode ? (
         <EditPost
           blog={editingPost}
           submitData={editPost}
@@ -84,7 +107,8 @@ const BlogContainer = () => {
         />
       ) : (
         blogList && renderBlogElements()
-      )}
+      )} */}
+      </Switch>
     </div>
   );
 };
