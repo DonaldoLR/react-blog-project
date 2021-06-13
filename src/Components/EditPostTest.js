@@ -1,35 +1,50 @@
-import React, { useState } from 'react';
-
-const EditPost = ({ blog, submitData, deletePost, setEditingMode }) => {
-  const { id, image, type, title, content } = blog;
+import React, { useState, useEffect } from 'react';
+import { useHistory, useParams } from 'react-router';
+const EditPostTest = ({ submitData, deletePost }) => {
+  const history = useHistory();
+  const params = useParams();
 
   const [formData, setFormData] = useState({
-    image: image,
-    type: type,
-    title: title,
-    content: content,
+    image: 'Loading...',
+    type: 'Loading...',
+    title: 'Loading...',
+    content: 'Loading...',
   });
-  const [imagePreviewUrl, setImagePreviewUrl] = useState(image);
+  const [imagePreviewUrl, setImagePreviewUrl] = useState(null);
+  useEffect(() => {
+    fetch(`http://localhost:3000/blogs/${params.id}`)
+      .then((r) => r.json())
+      .then((data) => {
+        setFormData(data);
+        setImagePreviewUrl(data.image);
+      });
+  }, []);
   const handleInputChange = (event) => {
     const key = event.target.name;
     const value = event.target.value;
     setFormData({ ...formData, [key]: value });
   };
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    submitData(formData, id);
+    submitData(formData, parseInt(params.id, 10));
+    history.push('/');
   };
+
   const handleImagePreview = (e) => {
     if (e.target.value !== '') {
       return setImagePreviewUrl(formData.image);
     }
     setImagePreviewUrl('https://via.placeholder.com/150');
   };
+
   const handleDelete = () => {
-    deletePost(id);
+    deletePost(parseInt(params.id, 10));
+    history.push('/');
   };
+
   const goHome = () => {
-    setEditingMode(false);
+    history.push('/');
   };
   return (
     <>
@@ -129,4 +144,4 @@ const EditPost = ({ blog, submitData, deletePost, setEditingMode }) => {
   );
 };
 
-export default EditPost;
+export default EditPostTest;

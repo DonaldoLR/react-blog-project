@@ -1,0 +1,5 @@
+form img {
+  max-width: 50% !important;
+  max-height: 100% !important;
+  object-fit: cover;
+}

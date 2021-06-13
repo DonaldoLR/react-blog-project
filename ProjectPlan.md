@@ -6,14 +6,14 @@
 
 ## MVP
 
-- [ ] Display posts with information from an API (JSON Server)
-- [ ] Can create a new post
-- [ ] Can edit an existing post
-- [ ] Can delete a post
+- [x] Display posts with information from an API (JSON Server)
+- [x] Can create a new post
+- [x] Can edit an existing post
+- [X Can delete a post
 
 ## Stretch Goals
 
-- [ ] A user can filter posts by categories
+- [x] A user can filter posts by categories
 - [ ] Can view more details / a complete blog
 
 ## Roadmap
@@ -31,19 +31,19 @@
 - [x] Create back-end API
   - [x] Decide data structure
     - [x] What data is available
-- [ ] Create front-end file system
-  - [ ] Use create-react-app to start
-  - [ ] Display how information will flow
-    - [ ] Create a componet tree
-- [ ] Handle Data
-  - [ ] Fetch data
-  - [ ] Set state with the data given
-- [ ] Add interactivity
-  - [ ] Ability to add a new post
-  - [ ] Ability to delete a post
-  - [ ] Ability to edit a post
-- [ ] Styling
-  - [ ] Implement design
+- [x] Create front-end file system
+  - [x] Use create-react-app to start
+  - [x] Display how information will flow
+    - [x] Create a componet tree
+- [x] Handle Data
+  - [x] Fetch data
+  - [x] Set state with the data given
+- [x] Add interactivity
+  - [x] Ability to add a new post
+  - [x] Ability to delete a post
+  - [x] Ability to edit a post
+- [x] Styling
+  - [x] Implement design
 - [ ] Cleanup
   - [ ] Code readability
     - [ ] Gather second opinion
