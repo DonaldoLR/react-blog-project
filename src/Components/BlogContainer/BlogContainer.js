@@ -21,9 +21,7 @@ const BlogContainer = () => {
 
   function renderBlogElements() {
     let filteredBlogList = [...blogList];
-    {
-      /* Filter current blog list by a type */
-    }
+
     if (filterType !== null) {
       filteredBlogList = filteredBlogList.filter((blog) => {
         if (filterType === 'All') {
