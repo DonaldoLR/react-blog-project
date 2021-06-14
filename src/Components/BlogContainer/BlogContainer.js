@@ -8,11 +8,11 @@ const BlogContainer = () => {
   const [blogList, setBlogList] = useState(null);
   const [filterType, setFilterType] = useState(null);
 
-  const BASE_URL = `http://localhost:3000`;
+  const BASE_URL = `https://don-project-blog-backend.herokuapp.com/blogs`;
   /* Fetch Data */
 
   useEffect(() => {
-    fetch(`http://localhost:3000/blogs`)
+    fetch(`https://don-project-blog-backend.herokuapp.com/blogs`)
       .then((r) => r.json())
       .then(setBlogList);
   }, []);
@@ -38,7 +38,7 @@ const BlogContainer = () => {
     ));
   }
   function addNewPost(formData) {
-    fetch(`${BASE_URL}/blogs`, {
+    fetch(`${BASE_URL}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -49,7 +49,7 @@ const BlogContainer = () => {
       .then((data) => setBlogList([...blogList, data]));
   }
   function editPost(formData, id) {
-    fetch(`${BASE_URL}/blogs/${id}`, {
+    fetch(`${BASE_URL}/${id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -66,7 +66,7 @@ const BlogContainer = () => {
       });
   }
   function deletePost(id) {
-    fetch(`${BASE_URL}/blogs/${id}`, {
+    fetch(`${BASE_URL}/${id}`, {
       method: 'DELETE',
     })
       .then((r) => r.json())

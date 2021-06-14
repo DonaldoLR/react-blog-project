@@ -12,7 +12,7 @@ const EditPostTest = ({ submitData, deletePost }) => {
   });
   const [imagePreviewUrl, setImagePreviewUrl] = useState(null);
   useEffect(() => {
-    fetch(`http://localhost:3000/blogs/${id}`)
+    fetch(`https://don-project-blog-backend.herokuapp.com/blogs/${id}`)
       .then((r) => r.json())
       .then((data) => {
         setFormData(data);
