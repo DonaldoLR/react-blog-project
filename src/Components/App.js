@@ -1,6 +1,6 @@
 import React from 'react';
-import BlogContainer from './BlogContainer';
-import Navigation from './Navigation';
+import BlogContainer from './BlogContainer/BlogContainer';
+import Navigation from './Navigation/Navigation';
 
 const App = () => {
   return (

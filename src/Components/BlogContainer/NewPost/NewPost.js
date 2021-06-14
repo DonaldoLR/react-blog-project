@@ -36,12 +36,9 @@ const NewPost = ({ submitData }) => {
 
   return (
     <form onSubmit={handleSubmit} className='row'>
-      <img
-        src={imagePreviewUrl}
-        width='100%'
-        alt='Preview'
-        className='col-lg img-fluid'
-      ></img>
+      <div className='col-lg'>
+        <img width='100%' src={imagePreviewUrl} alt='Preview'></img>
+      </div>
       <div className='col-lg'>
         <div className='mb-3'>
           <label className='form-label'>Image URL</label>

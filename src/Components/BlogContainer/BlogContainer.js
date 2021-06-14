@@ -1,25 +1,29 @@
 import React, { useState, useEffect } from 'react';
-import BlogPost from './BlogPost';
-import Filter from './Filter';
-import NewPost from './NewPost';
-import EditPost from './EditPost';
+import BlogPost from './BlogPost/BlogPost';
+import Filter from './Filter/Filter';
+import NewPost from './NewPost/NewPost';
+import EditPost from './EditPost/EditPost';
 import { Switch, Route } from 'react-router-dom';
-import EditPostTest from './EditPostTest';
 const BlogContainer = () => {
   const [blogList, setBlogList] = useState(null);
   const [filterType, setFilterType] = useState(null);
-  // const [editingMode, setEditingMode] = useState(false);
-  // const [editingPost, setEditingPost] = useState(null);
 
   const BASE_URL = `http://localhost:3000`;
+  /* Fetch Data */
 
   useEffect(() => {
     fetch(`http://localhost:3000/blogs`)
       .then((r) => r.json())
       .then(setBlogList);
   }, []);
+
+  /* Render Components */
+
   function renderBlogElements() {
     let filteredBlogList = [...blogList];
+    {
+      /* Filter current blog list by a type */
+    }
     if (filterType !== null) {
       filteredBlogList = filteredBlogList.filter((blog) => {
         if (filterType === 'All') {
@@ -30,19 +34,9 @@ const BlogContainer = () => {
       });
     }
     return filteredBlogList.map((blog) => (
-      <BlogPost
-        key={blog.id}
-        blog={blog}
-        // setEditingMode={setEditingMode}
-        // setEditingPost={setEditingPost}
-      />
+      <BlogPost key={blog.id} blog={blog} />
     ));
   }
-  // const fetchBlogs = async () => {
-  //   const data = await fetch(`http://localhost:3000/blogs`);
-  //   const items = await data.json();
-  //   setBlogList(items);
-  // };
   function addNewPost(formData) {
     fetch(`${BASE_URL}/blogs`, {
       method: 'POST',
@@ -64,16 +58,11 @@ const BlogContainer = () => {
     })
       .then((r) => r.json())
       .then((data) => {
-        // fetchBlogs();
-        // console.log(data);
-
         const updatedBlogList = blogList.map((blog) => {
           if (blog.id === data.id) return data;
           return blog;
         });
-        // console.log(updatedBlogList);
         setBlogList(updatedBlogList);
-        // setEditingMode(false);
       });
   }
   function deletePost(id) {
@@ -82,11 +71,9 @@ const BlogContainer = () => {
     })
       .then((r) => r.json())
       .then(() => {
-        // fetchBlogs();
         const updatedBlogList = blogList.filter((blog) => {
           return blog.id !== id;
         });
-
         setBlogList(updatedBlogList);
       });
   }
@@ -94,14 +81,7 @@ const BlogContainer = () => {
     <div className='container mt-5'>
       <Switch>
         <Route exact path='/'>
-          {/* {editingMode ? (
-            <EditPost
-              blog={editingPost}
-              submitData={editPost}
-              deletePost={deletePost}
-              setEditingMode={setEditingMode}
-            />
-          ) : ( */}
+          {/*If blogList is not null render blog components */}
           {blogList && (
             <>
               <h1 className='text-center'>Latest Posts</h1>
@@ -116,7 +96,7 @@ const BlogContainer = () => {
           <NewPost submitData={addNewPost} />
         </Route>
         <Route path='/editPost/:id'>
-          <EditPostTest deletePost={deletePost} submitData={editPost} />
+          <EditPost deletePost={deletePost} submitData={editPost} />
         </Route>
       </Switch>
     </div>
